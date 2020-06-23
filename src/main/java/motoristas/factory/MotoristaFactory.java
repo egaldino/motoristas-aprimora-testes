@@ -12,7 +12,7 @@ import motoristas.validator.MotoristaValidator;
 public class MotoristaFactory {
 
 	public static Motorista semCarro(Long cnh, String nome) throws ValidacaoException {
-//		MotoristaValidator.validaCnh(cnh);
+		MotoristaValidator.validaCnh(cnh);
 		return new Motorista(cnh, nome);
 	}
 	
