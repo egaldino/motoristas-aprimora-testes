@@ -8,15 +8,24 @@ import motoristas.repository.MotoristasRepository;
 
 public class MotoristaService {
 
-	public List<Motorista> filtrarMotoristasComSeguroTotal (List<Motorista> lista) {
-		List<Motorista> motoristas = MotoristasRepository.findAll();
+	private MotoristasRepository motoristasRepository;
 
+	public MotoristaService(MotoristasRepository motoristasRepository) {
+		this.motoristasRepository = motoristasRepository;
+	}
+	
+	public List<Motorista> recuperarMotoristasComSeguroTotal () {
+		List<Motorista> motoristas = motoristasRepository.findAll();
 		return motoristas.stream()
 				.filter(motorista -> motorista.getCarros().isPresent())
 				.filter(motorista -> motorista.getCarros().get().stream()
 											.anyMatch(carro -> carro.getSeguro().
 													filter(seguro -> seguro.getTotal()).isPresent()))
 				.collect(Collectors.toList());
+	}
+
+	public boolean salvar(Motorista motorista) {
+		return motoristasRepository.salvar(motorista);
 	}
 	
 }

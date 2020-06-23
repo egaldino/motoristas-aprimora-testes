@@ -10,7 +10,7 @@ import motoristas.model.Seguro;
 
 public class MotoristasRepository {
 
-	public static List<Motorista> findAll(){
+	public List<Motorista> findAll(){
 		Motorista toretto = new Motorista(70189847679L, "Dominic Toretto");
 		Motorista brian = new Motorista(28374652431L, "Brian O'Conner");
 		Motorista johnny = new Motorista(90476382763L, "Johnny Tran");
@@ -34,6 +34,11 @@ public class MotoristasRepository {
 		johnny.setCarros(new HashSet<>(Arrays.asList(honda)));
 		
 		return Arrays.asList(toretto, brian, johnny, agostinho);
+	}
+
+	public boolean salvar(Motorista motorista) {
+		
+		return false;
 	}
 	
 }
