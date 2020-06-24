@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import motoristas.exception.ValidacaoException;
@@ -15,6 +16,7 @@ import motoristas.model.Seguro;
 public class MotoristaFactoryTest {
 
 	@Test
+	@DisplayName("Criar Motorista Sem Carro")
 	public void deveCriarMotoristaSemCarroComSucesso() {
 		// Cenario (Dado que)
 		Long cnh = 70189847679L;
@@ -30,6 +32,7 @@ public class MotoristaFactoryTest {
 	}
 
 	@Test
+	@DisplayName("Criar Motorista com 1 carro")
 	public void deveCriarMotoristaComUmCarroComSucesso() {
 		// Cenario (Dado que)
 		Long cnh = 70189847679L;
@@ -56,6 +59,7 @@ public class MotoristaFactoryTest {
 	}
 
 	@Test
+	@DisplayName("Validar CNH Vazia")
 	public void deveLancarExceptionAoReceberCNHVazia() {
 		// Cenario (Dado que)
 		Long cnh = null;
@@ -69,10 +73,11 @@ public class MotoristaFactoryTest {
 		// Validação do retorno (Espero que)
 		String mensagemEsperada = "CNH não pode ser vazia";
 		String mensagemRecebida = exception.getMessage();
-		assertTrue(mensagemEsperada.equals(mensagemRecebida), "Mensagem incorreta");
+		assertEquals(mensagemEsperada, mensagemRecebida, "Mensagem incorreta");
 	}
 	
 	@Test
+	@DisplayName("Validar CNH Menor Que 11")
 	public void deveLancarExceptionAoReceberCNHMenorQueOnzeDigitos() {
 		// Cenario (Dado que)
 		Long cnh = 1234567890L;
